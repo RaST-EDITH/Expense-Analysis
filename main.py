@@ -2,6 +2,17 @@
 from tkinter import *                                        # pip install tkinter==8.6
 import customtkinter as ctk                                  # pip install customtkinter==4.6.3
 
+def expTrackerPage() :
+
+    # Defining Structure
+    expTrac_page = Canvas( root, 
+                        width = wid, height = hgt, 
+                         bg = "black", highlightcolor = "#3c5390", 
+                          borderwidth = 0 )
+    expTrac_page.pack( fill = "both", expand = True )
+
+    root.mainloop()
+
 if __name__ == "__main__" :
 
     global root
@@ -15,4 +26,5 @@ if __name__ == "__main__" :
     root.title( "Expense Analysis" )
     root.geometry( "1200x700+200+80" )
     root.resizable( False, False )
-    root.mainloop()
+    
+    expTrackerPage()
