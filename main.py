@@ -2,29 +2,31 @@
 from tkinter import *                                        # pip install tkinter==8.6
 import customtkinter as ctk                                  # pip install customtkinter==4.6.3
 
-def expTrackerPage() :
+class ExpenseTracker :
 
-    # Defining Structure
-    expTrac_page = Canvas( root, 
-                        width = wid, height = hgt, 
-                         bg = "black", highlightcolor = "#3c5390", 
-                          borderwidth = 0 )
-    expTrac_page.pack( fill = "both", expand = True )
+    def __init__(self) :
 
-    root.mainloop()
+        ctk.set_appearance_mode( "dark" )
+        ctk.set_default_color_theme( "dark-blue" )
+        self.width = 1200
+        self.height = 700
+        self.root = ctk.CTk()
+        self.root.title( "Expense Analysis" )
+        self.root.geometry( "1200x700+200+80" )
+        self.root.resizable( False, False )
+
+    def expEntryPage(self) :
+
+        # Defining Structure
+        expTrac_page = Canvas( self.root, 
+                                width = self.width, height = self.height, 
+                                 bg = "black", highlightcolor = "#3c5390", 
+                                  borderwidth = 0 )
+        expTrac_page.pack( fill = "both", expand = True )
+
+        self.root.mainloop()
 
 if __name__ == "__main__" :
 
-    global root
-
-    # Defining Main theme of all widgets
-    ctk.set_appearance_mode( "dark" )
-    ctk.set_default_color_theme( "dark-blue" )
-    wid = 1200
-    hgt = 700
-    root = ctk.CTk()
-    root.title( "Expense Analysis" )
-    root.geometry( "1200x700+200+80" )
-    root.resizable( False, False )
-    
-    expTrackerPage()
+    exp_class = ExpenseTracker()
+    exp_class.expEntryPage()
