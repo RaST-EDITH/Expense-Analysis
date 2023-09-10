@@ -24,6 +24,10 @@ class ExpenseTracker :
                                   borderwidth = 0 )
         expTrac_page.pack( fill = "both", expand = True )
 
+        # Heading
+        expTrac_page.create_text( 700, 120, text = "Expense Tracker", 
+                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+
         self.root.mainloop()
 
 if __name__ == "__main__" :
