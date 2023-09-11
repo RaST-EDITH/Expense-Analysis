@@ -37,6 +37,13 @@ class ExpenseTracker :
                                      border_color = "white", border_width = 3)
         expense_win = expTrac_page.create_window( 325, 320-120, anchor = "nw", window = expense )
 
+        # Status box added
+        status_box = ctk.CTkTextbox( expTrac_page, 
+                                        width = 880, height = 400, 
+                                            text_font = ( font[1], 20 ), 
+                                                state = "disabled"  )
+        status_box.place( x = 150, y = 220, anchor = "nw")
+
         # Insert Button
         insert_bt = ctk.CTkButton( master = expTrac_page, 
                                     text = "Insert", text_font = ( "Tahoma", 20 ), 
