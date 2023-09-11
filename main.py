@@ -44,6 +44,8 @@ class ExpenseTracker :
                                                 state = "disabled"  )
         status_box.place( x = 150, y = 220, anchor = "nw")
 
+        expense.bind('<Return>', lambda event = None : updateExp( expense.get(), status_box ) )
+        
         # Insert Button
         insert_bt = ctk.CTkButton( master = expTrac_page, 
                                     text = "Insert", text_font = ( "Tahoma", 20 ), 
