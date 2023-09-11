@@ -28,6 +28,24 @@ class ExpenseTracker :
         expTrac_page.create_text( 700, 120, text = "Expense Tracker", 
                                 font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
 
+        # Expense Entry Box
+        expense = ctk.CTkEntry( master = expTrac_page, 
+                                 placeholder_text = "Enter Expense", text_font = ( "Seoge UI", 20 ), 
+                                  width = 550, height = 30, corner_radius = 14,
+                                   placeholder_text_color = "#666666", text_color = "#191919", 
+                                    fg_color = "#e1f5ff", bg_color = "black", 
+                                     border_color = "white", border_width = 3)
+        expense_win = expTrac_page.create_window( 325, 320-120, anchor = "nw", window = expense )
+
+        # Insert Button
+        insert_bt = ctk.CTkButton( master = expTrac_page, 
+                                    text = "Insert", text_font = ( "Tahoma", 20 ), 
+                                     width = 100, height = 40, corner_radius = 18,
+                                      bg_color = "black", fg_color = "red", 
+                                       hover_color = "#ff5359", border_width = 0, 
+                                        command = lambda : updateExp( expense.get(), status_box ) )
+        insert_bt_win = expTrac_page.create_window( 1030, 320-120, anchor = "nw", window = insert_bt )
+
         self.root.mainloop()
 
 if __name__ == "__main__" :
