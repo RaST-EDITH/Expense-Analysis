@@ -15,6 +15,12 @@ class ExpenseTracker :
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
 
+    def change( can, page) :
+
+        # Switching canvas
+        can.destroy()
+        page()
+
     def expEntryPage(self) :
 
         # Defining Structure
