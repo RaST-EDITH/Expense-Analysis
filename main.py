@@ -21,6 +21,17 @@ class ExpenseTracker :
         can.destroy()
         page()
 
+    def expenseAnalysisPage() :
+
+        # Defining Structure
+        expAnaly_page = Canvas( root, 
+                                 width = self.width, height = self.height, 
+                                  bg = "black", highlightcolor = "#3c5390", 
+                                   borderwidth = 0 )
+        expAnaly_page.pack( fill = "both", expand = True )
+
+        self.root.mainloop()
+
     def expEntryPage(self) :
 
         # Defining Structure
