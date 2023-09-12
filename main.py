@@ -30,6 +30,10 @@ class ExpenseTracker :
                                    borderwidth = 0 )
         expAnaly_page.pack( fill = "both", expand = True )
 
+        # Heading
+        expAnaly_page.create_text( 700, 120, text = "Expense Analysis", 
+                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+
         self.root.mainloop()
 
     def expEntryPage(self) :
