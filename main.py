@@ -40,7 +40,7 @@ class ExpenseTracker :
         # Status box added
         status_box = ctk.CTkTextbox( expTrac_page, 
                                         width = 880, height = 400, 
-                                            text_font = ( font[1], 20 ), 
+                                            text_font = ( "Seoge UI", 20 ), 
                                                 state = "disabled"  )
         status_box.place( x = 150, y = 220, anchor = "nw")
 
@@ -54,6 +54,15 @@ class ExpenseTracker :
                                        hover_color = "#ff5359", border_width = 0, 
                                         command = lambda : updateExp( expense.get(), status_box ) )
         insert_bt_win = expTrac_page.create_window( 1030, 320-120, anchor = "nw", window = insert_bt )
+
+        # Analysis Button
+        analysis_bt = ctk.CTkButton( master = expTrac_page, 
+                                      text = "Expense Analysis", text_font = ( "Tahoma", 20 ), 
+                                       width = 100, height = 40, corner_radius = 18,
+                                        bg_color = "black", fg_color = "red", 
+                                         hover_color = "#ff5359", border_width = 0, 
+                                          command = lambda : change( expTrac_page, expenseAnalysisPage ) )
+        analysis_bt_win = expTrac_page.create_window( 610, 790, anchor = "nw", window = analysis_bt )
 
         self.root.mainloop()
 
