@@ -54,7 +54,7 @@ class ExpenseTracker :
 
         # Bar 1 Button
         Bar1_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Previous Totals", text_font = ( font[0], 20 ), 
+                                  text = "Previous Totals", text_font = ( "Tahoma", 20 ), 
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
@@ -63,12 +63,21 @@ class ExpenseTracker :
 
         # Bar 2 Button
         Bar2_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Previous Detailed", text_font = ( font[0], 20 ), 
+                                  text = "Previous Detailed", text_font = ( "Tahoma", 20 ), 
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
                                       command = lambda : barShow( bar_data, 1) )
         Bar2_bt_win = expAnaly_page.create_window( 1000, 200, anchor = "nw", window = Bar2_bt )
+
+        # Return Button
+        ret_bt = ctk.CTkButton( master = expAnaly_page, 
+                                 text = "Back", text_font = ( "Tahoma", 20 ), 
+                                  width = 100, height = 50, corner_radius = 18,
+                                   bg_color = "black", fg_color = "red", 
+                                    hover_color = "#ff5359", border_width = 0, 
+                                     command = lambda : change( expAnaly_page, expTrackerPage) )
+        ret_bt_win = expAnaly_page.create_window( 30, 20, anchor = "nw", window = ret_bt )
 
         self.root.mainloop()
 
