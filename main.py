@@ -34,6 +34,15 @@ class ExpenseTracker :
         expAnaly_page.create_text( 700, 120, text = "Expense Analysis", 
                                 font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
 
+        # Pie 1 Button
+        pie1_bt = ctk.CTkButton( master = expAnaly_page, 
+                                  text = "Current Month", text_font = ( "Tahoma", 20 ), 
+                                   width = 100, height = 50, corner_radius = 18,
+                                    bg_color = "black", fg_color = "red", 
+                                     hover_color = "#ff5359", border_width = 0, 
+                                      command = lambda : pieShow( data_1 ) )
+        pie1_bt_win = expAnaly_page.create_window( 100, 200, anchor = "nw", window = pie1_bt )
+
         self.root.mainloop()
 
     def expEntryPage(self) :
