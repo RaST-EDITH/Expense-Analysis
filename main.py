@@ -15,16 +15,18 @@ class ExpenseTracker :
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
 
-    def change( can, page) :
+    def change( self, can, page) :
 
         # Switching canvas
         can.destroy()
         page()
 
-    def expenseAnalysisPage() :
+    def expenseAnalysisPage(self) :
+
+        data_1, data_2, bar_data = self.expenseAnalysis()
 
         # Defining Structure
-        expAnaly_page = Canvas( root, 
+        expAnaly_page = Canvas( self.root, 
                                  width = self.width, height = self.height, 
                                   bg = "black", highlightcolor = "#3c5390", 
                                    borderwidth = 0 )
@@ -40,7 +42,7 @@ class ExpenseTracker :
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : pieShow( data_1 ) )
+                                      command = lambda : self.pieShow( data_1 ) )
         pie1_bt_win = expAnaly_page.create_window( 100, 200, anchor = "nw", window = pie1_bt )
 
         # Pie 2 Button
@@ -49,7 +51,7 @@ class ExpenseTracker :
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : pieShow( data_2 ) )
+                                      command = lambda : self.pieShow( data_2 ) )
         pie2_bt_win = expAnaly_page.create_window( 400, 200, anchor = "nw", window = pie2_bt )
 
         # Bar 1 Button
@@ -58,7 +60,7 @@ class ExpenseTracker :
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : barShow( bar_data, 2 ) )
+                                      command = lambda : self.barShow( bar_data, 2 ) )
         Bar1_bt_win = expAnaly_page.create_window( 700, 200, anchor = "nw", window = Bar1_bt )
 
         # Bar 2 Button
@@ -67,7 +69,7 @@ class ExpenseTracker :
                                    width = 100, height = 50, corner_radius = 18,
                                     bg_color = "black", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : barShow( bar_data, 1) )
+                                      command = lambda : self.barShow( bar_data, 1) )
         Bar2_bt_win = expAnaly_page.create_window( 1000, 200, anchor = "nw", window = Bar2_bt )
 
         # Return Button
@@ -76,7 +78,7 @@ class ExpenseTracker :
                                   width = 100, height = 50, corner_radius = 18,
                                    bg_color = "black", fg_color = "red", 
                                     hover_color = "#ff5359", border_width = 0, 
-                                     command = lambda : change( expAnaly_page, expTrackerPage) )
+                                     command = lambda : self.change( expAnaly_page, self.expEntryPage) )
         ret_bt_win = expAnaly_page.create_window( 30, 20, anchor = "nw", window = ret_bt )
 
         self.root.mainloop()
@@ -110,7 +112,7 @@ class ExpenseTracker :
                                                 state = "disabled"  )
         status_box.place( x = 150, y = 220, anchor = "nw")
 
-        expense.bind('<Return>', lambda event = None : updateExp( expense.get(), status_box ) )
+        expense.bind('<Return>', lambda event = None : self.updateExp( expense.get(), status_box ) )
         
         # Insert Button
         insert_bt = ctk.CTkButton( master = expTrac_page, 
@@ -118,7 +120,7 @@ class ExpenseTracker :
                                      width = 100, height = 40, corner_radius = 18,
                                       bg_color = "black", fg_color = "red", 
                                        hover_color = "#ff5359", border_width = 0, 
-                                        command = lambda : updateExp( expense.get(), status_box ) )
+                                        command = lambda : self.updateExp( expense.get(), status_box ) )
         insert_bt_win = expTrac_page.create_window( 1030, 320-120, anchor = "nw", window = insert_bt )
 
         # Analysis Button
@@ -127,7 +129,7 @@ class ExpenseTracker :
                                        width = 100, height = 40, corner_radius = 18,
                                         bg_color = "black", fg_color = "red", 
                                          hover_color = "#ff5359", border_width = 0, 
-                                          command = lambda : change( expTrac_page, expenseAnalysisPage ) )
+                                          command = lambda : self.change( expTrac_page, self.expenseAnalysisPage ) )
         analysis_bt_win = expTrac_page.create_window( 610, 790, anchor = "nw", window = analysis_bt )
 
         self.root.mainloop()
