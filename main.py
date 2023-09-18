@@ -21,6 +21,18 @@ class ExpenseTracker :
         can.destroy()
         page()
 
+    def updateExp( self, value, area ) :
+
+        rst = value.split()
+        data = {
+            "Amount" : 0,
+            "Category" : "",
+            "Comment" : "",
+            "Total" : 0,
+            "Incat" : 0
+        }
+
+
     def expenseAnalysisPage(self) :
 
         data_1, data_2, bar_data = self.expenseAnalysis()
