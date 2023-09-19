@@ -32,6 +32,17 @@ class ExpenseTracker :
             "Incat" : 0
         }
 
+        if ( len(rst) >= 2 and ( rst[0].isnumeric() or rst[1].isnumeric() ) ) :
+            if rst[0].isnumeric() :
+                data["Amount"] = int(rst[0])
+                data["Category"] = rst[1].capitalize()
+
+            else :
+                data["Amount"] = int(rst[1])
+                data["Category"] = rst[0].capitalize()
+            
+            if( len(rst) > 2 ) :
+                data["Comment"] = " ".join(rst[2:])
 
     def expenseAnalysisPage(self) :
 
