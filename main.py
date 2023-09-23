@@ -14,6 +14,7 @@ class ExpenseTracker :
         self.root.title( "Expense Analysis" )
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
+        self.count = [1,2]
 
     def change( self, can, page) :
 
@@ -44,6 +45,29 @@ class ExpenseTracker :
             if( len(rst) > 2 ) :
                 data["Comment"] = " ".join(rst[2:])
 
+            try :
+                flag = self.updateExpSheet( data )
+
+                if flag :
+                    show_val = " "*( 118 - int(1.8*len(value) ) )
+                    show_val = show_val + value
+                    final = f'Saved { data["Amount"] } in category { data["Category"] }\n'
+                    final = final + f'Total in category { data["Category"] } : { data["Incat"] }\n'
+                    final = final + f'This month : { data["Total"] }\n'
+
+                    area.configure( state = "normal")
+                    area.insert( f"{count[0]}.0", str(show_val)+'\n' )
+                    area.insert( f"{count[1]}.0", final )
+                    area.configure( state = "disabled")
+                    self.count[0] += 2 + 2
+                    self.count[1] += 2 + 2
+            
+            except :
+                showerror( message = "Invalid Entry!", title = "Invalid")
+        
+        else :
+            showerror( message = "Invalid Entry!!", title = "Invalid")
+        
     def expenseAnalysisPage(self) :
 
         data_1, data_2, bar_data = self.expenseAnalysis()
