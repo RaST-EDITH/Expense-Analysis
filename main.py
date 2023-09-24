@@ -1,6 +1,12 @@
 # Library and Modules used 
+import os                                                    # pip install os ( In case if not present )
+import numpy as np                                           # pip install numpy ( In case if not present )
+import pandas as pd                                          # pip install pandas==1.4.3
+import openpyxl as oxl                                       # pip install openpyxl==3.0.10
 from tkinter import *                                        # pip install tkinter==8.6
 import customtkinter as ctk                                  # pip install customtkinter==4.6.3
+from datetime import datetime, date
+from tkinter.messagebox import showerror, showinfo
 
 class ExpenseTracker :
 
@@ -15,6 +21,7 @@ class ExpenseTracker :
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
         self.count = [1,2]
+        self.path = os.path.join( os.getcwd(), "ExpenseSheet.xlsx")
 
     def change( self, can, page) :
 
@@ -22,10 +29,23 @@ class ExpenseTracker :
         can.destroy()
         page()
 
+    def updateExpSheet(self) :
+
+        expense_sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
+        row, col = expense_sheet.shape
+        
+        wb = oxl.load_workbook( self.path )
+        sheet_xl = wb['Expense_Sheet']
+        sheet_xl[f"A{row+2}"].value = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        sheet_xl[f"B{row+2}"].value = self.data["Category"]
+        sheet_xl[f"C{row+2}"].value = self.data["Amount"]
+        sheet_xl[f"D{row+2}"].value = self.data["Comment"]
+        sheet_xl[f"E{row+2}"].value = int(date.today().strftime("%m%Y"))
+
     def updateExp( self, value, area ) :
 
         rst = value.split()
-        data = {
+        self.data = {
             "Amount" : 0,
             "Category" : "",
             "Comment" : "",
@@ -35,25 +55,24 @@ class ExpenseTracker :
 
         if ( len(rst) >= 2 and ( rst[0].isnumeric() or rst[1].isnumeric() ) ) :
             if rst[0].isnumeric() :
-                data["Amount"] = int(rst[0])
-                data["Category"] = rst[1].capitalize()
+                self.data["Amount"] = int(rst[0])
+                self.data["Category"] = rst[1].capitalize()
 
             else :
-                data["Amount"] = int(rst[1])
-                data["Category"] = rst[0].capitalize()
+                self.data["Amount"] = int(rst[1])
+                self.data["Category"] = rst[0].capitalize()
             
             if( len(rst) > 2 ) :
-                data["Comment"] = " ".join(rst[2:])
+                self.data["Comment"] = " ".join(rst[2:])
 
             try :
-                flag = self.updateExpSheet( data )
 
-                if flag :
+                if self.updateExpSheet() :
                     show_val = " "*( 118 - int(1.8*len(value) ) )
                     show_val = show_val + value
-                    final = f'Saved { data["Amount"] } in category { data["Category"] }\n'
-                    final = final + f'Total in category { data["Category"] } : { data["Incat"] }\n'
-                    final = final + f'This month : { data["Total"] }\n'
+                    final = f'Saved { self.data["Amount"] } in category { self.data["Category"] }\n'
+                    final = final + f'Total in category { self.data["Category"] } : { self.data["Incat"] }\n'
+                    final = final + f'This month : { self.data["Total"] }\n'
 
                     area.configure( state = "normal")
                     area.insert( f"{count[0]}.0", str(show_val)+'\n' )
