@@ -62,6 +62,29 @@ class ExpenseTracker :
             for i in range(len(months)) :
                 req_months[months[i]] = all_months[k]
                 k = ( k+11 )%12
+        
+        # Current Month
+        mon_res = ( sheet[column[4]] == months[0] )
+        unq_res = sheet[mon_res][column[1]].unique()
+        exp_mon_1 = {}
+        exp = [exp_mon_1]
+        for i in unq_res :
+            res = ( sheet[column[1]] == i ) & mon_res
+            exp_mon_1[i] = sheet[res][column[2]].sum()
+        
+        # Pie Chart-1 Data
+        pie_1_data ={
+            "Status" : True,
+            "Month" : str(req_months[months[0]]),
+            "Total" : str(sheet[mon_res][column[2]].sum()),
+            "X" : exp_mon_1.values(),
+            "Y" : exp_mon_1.keys()
+        }
+        
+        # Pie Chart-2 Data
+        pie_2_data ={
+            "Status" : False
+        }
 
     def updateExpSheet(self) :
 
