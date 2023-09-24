@@ -42,6 +42,23 @@ class ExpenseTracker :
         sheet_xl[f"D{row+2}"].value = self.data["Comment"]
         sheet_xl[f"E{row+2}"].value = int(date.today().strftime("%m%Y"))
 
+        try :
+            wb.save( path )
+
+            temp_sheet = pd.read_excel( pd.ExcelFile( path ), 'Sheet4')
+            temp_column = temp_sheet.columns
+            mon = int(date.today().strftime("%m%Y"))
+            res_cat = ( temp_sheet[temp_column[1]] == data["Category"] ) & ( temp_sheet[temp_column[4]] == mon )
+            res_mon = ( temp_sheet[temp_column[4]] == mon )
+
+            data["Incat"], data["Total"] = temp_sheet[res_cat][temp_column[2]].sum(), temp_sheet[res_mon][temp_column[2]].sum()
+            return 1 
+        
+        except :
+            showerror( title = "Open File", message = "Close File in Background" )
+        
+        return 0
+
     def updateExp( self, value, area ) :
 
         rst = value.split()
