@@ -43,6 +43,26 @@ class ExpenseTracker :
         months = sheet[column[4]].unique()
         req_months = {}
 
+        if len(months) >= 4 :
+            months = months[-1:-5:-1]
+            for i in all_months.keys() :
+                if ( date.today().strftime("%B") == all_months[i] ) :
+                    k = i
+                    break
+            for i in range(4) :
+                req_months[months[i]] = all_months[k]
+                k = ( k+11 )%12
+
+        else :
+            months = months[::-1]
+            for i in all_months.keys() :
+                if ( date.today().strftime("%B") == all_months[i] ) :
+                    k = i
+                    break
+            for i in range(len(months)) :
+                req_months[months[i]] = all_months[k]
+                k = ( k+11 )%12
+
     def updateExpSheet(self) :
 
         expense_sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
