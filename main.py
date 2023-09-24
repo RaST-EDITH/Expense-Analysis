@@ -29,6 +29,20 @@ class ExpenseTracker :
         can.destroy()
         page()
 
+    def expenseAnalysis() :
+
+        sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
+        column = sheet.columns
+        all_months = {
+            1: 'January', 2: 'February', 3: 'March', 4: 'April', 
+            5: 'May', 6: 'June', 7: 'July', 8: 'August', 
+            9: 'September', 10: 'October', 11: 'November', 12: 'December'
+        }
+
+        curr_month = int(date.today().strftime("%m%Y"))
+        months = sheet[column[4]].unique()
+        req_months = {}
+
     def updateExpSheet(self) :
 
         expense_sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
@@ -43,15 +57,15 @@ class ExpenseTracker :
         sheet_xl[f"E{row+2}"].value = int(date.today().strftime("%m%Y"))
 
         try :
-            wb.save( path )
+            wb.save( self.path )
 
-            temp_sheet = pd.read_excel( pd.ExcelFile( path ), 'Sheet4')
+            temp_sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
             temp_column = temp_sheet.columns
             mon = int(date.today().strftime("%m%Y"))
-            res_cat = ( temp_sheet[temp_column[1]] == data["Category"] ) & ( temp_sheet[temp_column[4]] == mon )
+            res_cat = ( temp_sheet[temp_column[1]] == self.data["Category"] ) & ( temp_sheet[temp_column[4]] == mon )
             res_mon = ( temp_sheet[temp_column[4]] == mon )
 
-            data["Incat"], data["Total"] = temp_sheet[res_cat][temp_column[2]].sum(), temp_sheet[res_mon][temp_column[2]].sum()
+            self.data["Incat"], self.data["Total"] = temp_sheet[res_cat][temp_column[2]].sum(), temp_sheet[res_mon][temp_column[2]].sum()
             return 1 
         
         except :
