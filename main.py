@@ -125,6 +125,27 @@ class ExpenseTracker :
                     for i in unq_res :
                         res = ( sheet[column[1]] == i ) & mon_res
                         exp_mon_4[i] = sheet[res][column[2]].sum()
+        
+        # All Month Data
+        exp_bar = { "Total" : [] }
+        
+        for a in exp :
+            for i in a.keys() :
+                exp_bar[i] = []
+        
+        for i in range( len(exp) ) :
+            exp_bar["Total"].append( sum(list(exp[i].values())) )
+            for x in exp_bar.keys() :
+                if x in exp[i].keys() :
+                    exp_bar[x].append(exp[i][x])
+                elif x != "Total" :
+                    exp_bar[x].append(0)
+
+        for i in exp_bar.keys() :
+            if ( len(exp_bar["Total"]) != len(exp_bar[i]) ) :
+                exp_bar[i].extend([0]*(len(exp_bar["Total"]) - len(exp_bar[i])))
+
+        return [ pie_1_data, pie_2_data, ( exp_bar, req_months.values() ) ]
 
     def updateExpSheet(self) :
 
