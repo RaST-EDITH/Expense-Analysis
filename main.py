@@ -29,6 +29,21 @@ class ExpenseTracker :
         can.destroy()
         page()
 
+    def pieShow( self, data ) :
+
+        if data["Status"] :
+
+            title = plt.title(  f'{data["Month"]} Expenses - Rs {data["Total"]}')
+            title.set_ha("center")
+            plt.gca().axis("equal")
+            explode = [0.05]*len(data["Y"])
+            pie = plt.pie( data["X"], labels = data["X"], explode = explode, shadow = True, autopct = '%.2f%%' )
+            plt.legend( labels = data["Y"], bbox_to_anchor=(0,0), loc = "lower left", bbox_transform = plt.gcf().transFigure )
+            plt.show()
+        
+        else :
+            showerror( title = "Empty Records", message = "No Data Found")
+
     def expenseAnalysis() :
 
         sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
