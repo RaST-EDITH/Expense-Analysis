@@ -104,6 +104,17 @@ class ExpenseTracker :
                 "Y" : exp_mon_2.keys()
             }
 
+            if ( len(months) > 2 ) :
+
+                # Third Month
+                mon_res = ( sheet[column[4]] == months[2] )
+                unq_res = sheet[mon_res][column[1]].unique()
+                exp_mon_3 = {}
+                exp.append(exp_mon_3)
+                for i in unq_res :
+                    res = ( sheet[column[1]] == i ) & mon_res
+                    exp_mon_3[i] = sheet[res][column[2]].sum()
+
     def updateExpSheet(self) :
 
         expense_sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
