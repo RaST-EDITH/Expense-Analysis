@@ -85,6 +85,24 @@ class ExpenseTracker :
         pie_2_data ={
             "Status" : False
         }
+        if ( len(months) > 1 ) :
+
+            # Previous Month
+            mon_res = ( sheet[column[4]] == months[1] )
+            unq_res = sheet[mon_res][column[1]].unique()
+            exp_mon_2 = {}
+            exp.append(exp_mon_2)
+            for i in unq_res :
+                res = ( sheet[column[1]] == i ) & mon_res
+                exp_mon_2[i] = sheet[res][column[2]].sum()
+            
+            pie_2_data ={
+                "Status" : True,
+                "Month" : str(req_months[months[1]]),
+                "Total" : str(sheet[mon_res][column[2]].sum()),
+                "X" : exp_mon_2.values(),
+                "Y" : exp_mon_2.keys()
+            }
 
     def updateExpSheet(self) :
 
