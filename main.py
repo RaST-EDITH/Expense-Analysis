@@ -114,6 +114,17 @@ class ExpenseTracker :
                 for i in unq_res :
                     res = ( sheet[column[1]] == i ) & mon_res
                     exp_mon_3[i] = sheet[res][column[2]].sum()
+                
+                if ( len(months) > 3 ) :
+
+                    # Fourth Month
+                    mon_res = ( sheet[column[4]] == months[3] )
+                    unq_res = sheet[mon_res][column[1]].unique()
+                    exp_mon_4 = {}
+                    exp.append(exp_mon_4)
+                    for i in unq_res :
+                        res = ( sheet[column[1]] == i ) & mon_res
+                        exp_mon_4[i] = sheet[res][column[2]].sum()
 
     def updateExpSheet(self) :
 
