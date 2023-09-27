@@ -5,6 +5,7 @@ import pandas as pd                                          # pip install panda
 import openpyxl as oxl                                       # pip install openpyxl==3.0.10
 from tkinter import *                                        # pip install tkinter==8.6
 import customtkinter as ctk                                  # pip install customtkinter==4.6.3
+import matplotlib.pyplot as plt                              # pip install matplotlib==3.4.3
 from datetime import datetime, date
 from tkinter.messagebox import showerror, showinfo
 
@@ -44,7 +45,40 @@ class ExpenseTracker :
         else :
             showerror( title = "Empty Records", message = "No Data Found")
 
-    def expenseAnalysis() :
+    def barShow( self, data, flag ) :
+
+        w = 0.5
+        c = 0
+        exp_bar, req_months = data
+        colors = [
+            '#FF6B6B', '#6B4226', '#6AB04A', '#F9A03F', '#F7DB4F',
+            '#F7665A', '#48A9A6', '#F4A261', '#FFD700', '#F4A261',
+            '#58B19F', '#F19066', '#9A8C98', '#4B778D', '#45ADA8',
+            '#A85183', '#FFD700', '#CC8E35', '#FFCB77', '#68B0AB',
+            '#CB769E', '#FF6B6B', '#577590', '#40C9A2', '#8A5E9F'
+        ]
+        if flag == 1 :
+            x_place = np.arange( 1, 4*5, 5)
+            label = []
+            for i in exp_bar.keys() :
+                if i !="Total" :
+                    plt.bar( x_place + c*w, exp_bar[i], width = w, color = colors[(c*3)%25] )
+                    c = c+1
+                    label.append(i)
+            plt.xticks( x_place + (c-1)*w/2, req_months )
+            plt.legend( labels = label )
+        
+        else :
+            x_place = np.arange( 1, 5)
+            plt.bar( x_place, exp_bar["Total"], width = w, color = colors[6] )
+            plt.xticks( x_place, req_months )
+        
+        plt.xlabel("Months")
+        plt.ylabel("Expense Amount")
+        plt.title("Previous Months Expense Chart")
+        plt.show()
+
+    def expenseAnalysis( self ) :
 
         sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
         column = sheet.columns
@@ -225,8 +259,8 @@ class ExpenseTracker :
                     final = final + f'This month : { self.data["Total"] }\n'
 
                     area.configure( state = "normal")
-                    area.insert( f"{count[0]}.0", str(show_val)+'\n' )
-                    area.insert( f"{count[1]}.0", final )
+                    area.insert( f"{self.count[0]}.0", str(show_val)+'\n' )
+                    area.insert( f"{self.count[1]}.0", final )
                     area.configure( state = "disabled")
                     self.count[0] += 2 + 2
                     self.count[1] += 2 + 2
@@ -236,7 +270,7 @@ class ExpenseTracker :
         
         else :
             showerror( message = "Invalid Entry!!", title = "Invalid")
-        
+
     def expenseAnalysisPage(self) :
 
         data_1, data_2, bar_data = self.expenseAnalysis()
