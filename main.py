@@ -384,7 +384,31 @@ class ExpenseTracker :
 
         self.root.mainloop()
 
+    def firstPage(self) :
+
+        # Defining Structure
+        first_page = Canvas( self.root, 
+                              width = self.width, height = self.height, 
+                               bg = "black", highlightcolor = "#3c5390", 
+                                borderwidth = 0 )
+        first_page.pack( fill = "both", expand = True )
+
+        # Heading
+        first_page.create_text( 700, 120, text = "Expense Tracker", 
+                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+
+        # Next Page Button
+        next_bt = ctk.CTkButton( master = first_page, 
+                                  text = "Let's Go -->", text_font = ( "Tahoma", 20 ), 
+                                   width = 100, height = 40, corner_radius = 18,
+                                    bg_color = "black", fg_color = "red", 
+                                     hover_color = "#ff5359", border_width = 0, 
+                                      command = lambda : self.change( first_page, self.expEntryPage ) )
+        next_bt_win = first_page.create_window( 610, 790, anchor = "nw", window = next_bt )
+
+        self.root.mainloop()
+
 if __name__ == "__main__" :
 
     exp_class = ExpenseTracker()
-    exp_class.expEntryPage()
+    exp_class.firstPage()
