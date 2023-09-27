@@ -6,6 +6,7 @@ import openpyxl as oxl                                       # pip install openp
 from tkinter import *                                        # pip install tkinter==8.6
 import customtkinter as ctk                                  # pip install customtkinter==4.6.3
 import matplotlib.pyplot as plt                              # pip install matplotlib==3.4.3
+from PIL import Image ,ImageTk                               # pip install pillow==9.3.0
 from datetime import datetime, date
 from tkinter.messagebox import showerror, showinfo
 
@@ -29,6 +30,13 @@ class ExpenseTracker :
         # Switching canvas
         can.destroy()
         page()
+
+    def Imgo( self, file, w, h ) :
+
+        # Image processing
+        img = Image.open(file)
+        pht = ImageTk.PhotoImage( img.resize((w,h), Image.Resampling.LANCZOS ))
+        return pht
 
     def pieShow( self, data ) :
 
@@ -393,9 +401,13 @@ class ExpenseTracker :
                                 borderwidth = 0 )
         first_page.pack( fill = "both", expand = True )
 
+        # Background Image
+        back_image = self.Imgo( os.path.join( os.getcwd(), "Ckk_bk1.jpg" ), 1498, 875)
+        first_page.create_image( 0, 0, image = back_image , anchor = "nw")
+
         # Heading
         first_page.create_text( 700, 120, text = "Expense Tracker", 
-                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+                                font = ( "Georgia", 45, "bold", "underline" ), fill = "#1c54df" )
 
         # Next Page Button
         next_bt = ctk.CTkButton( master = first_page, 
