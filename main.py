@@ -402,21 +402,26 @@ class ExpenseTracker :
         first_page.pack( fill = "both", expand = True )
 
         # Background Image
-        back_image = self.Imgo( os.path.join( os.getcwd(), "Ckk_bk1.jpg" ), 1498, 875)
+        back_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstpage.jpg" ), 1498, 875)
         first_page.create_image( 0, 0, image = back_image , anchor = "nw")
+        front_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstdesign.jpg" ), 300, 300)
+        first_page.create_image( 500,360, image = front_image , anchor = "nw")
 
         # Heading
-        first_page.create_text( 700, 120, text = "Expense Tracker", 
-                                font = ( "Georgia", 45, "bold", "underline" ), fill = "#1c54df" )
+        first_page.create_text( 400, 120-1, text = "Expense Tracker", 
+                                font = ( "Georgia", 42, "bold" ), fill = "#ec1c24" )
+        first_page.create_text( 280, 500, text = "A personalized\nexpense monitoring\napplication\nwith features like\nexpense analysis and\nvisualization using\nbar graphs\nand pie charts.", 
+                                font = ( "Georgia", 20 ), fill = "white" )
 
         # Next Page Button
         next_bt = ctk.CTkButton( master = first_page, 
-                                  text = "Let's Go -->", text_font = ( "Tahoma", 20 ), 
+                                  text = "Let's Go ->", text_font = ( "Tahoma", 20 ), 
                                    width = 100, height = 40, corner_radius = 18,
-                                    bg_color = "black", fg_color = "red", 
-                                     hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : self.change( first_page, self.expEntryPage ) )
-        next_bt_win = first_page.create_window( 610, 790, anchor = "nw", window = next_bt )
+                                    bg_color = "#fecc8f", fg_color = "#ff5359", 
+                                     hover_color = "#008175", border_width = 0,
+                                      text_color = "white",
+                                       command = lambda : self.change( first_page, self.expEntryPage ) )
+        next_bt_win = first_page.create_window( 320, 720, anchor = "nw", window = next_bt )
 
         self.root.mainloop()
 
