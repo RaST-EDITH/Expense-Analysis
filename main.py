@@ -20,10 +20,11 @@ class ExpenseTracker :
         self.height = 700
         self.root = ctk.CTk()
         self.root.title( "Expense Analysis" )
+        self.root.iconbitmap( os.path.join( os.getcwd(), "Background\coin.ico" ))
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
         self.count = [1,2]
-        self.path = os.path.join( os.getcwd(), "ExpenseSheet.xlsx")
+        self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet.xlsx")
 
     def change( self, can, page) :
 
@@ -260,7 +261,7 @@ class ExpenseTracker :
             try :
 
                 if self.updateExpSheet() :
-                    show_val = " "*( 118 - int(1.8*len(value) ) )
+                    show_val = " "*( 138 - int(1.8*len(value) ) )
                     show_val = show_val + value
                     final = f'Saved { self.data["Amount"] } in category { self.data["Category"] }\n'
                     final = final + f'Total in category { self.data["Category"] } : { self.data["Incat"] }\n'
@@ -399,14 +400,14 @@ class ExpenseTracker :
         analysis_bt_win = expTrac_page.create_window( 930, 790, anchor = "nw", window = analysis_bt )
 
         # Return Button
-        log = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
-        log_bt = ctk.CTkButton( master = expTrac_page, 
-                                 image = log, text = None, 
-                                  width = 45, height = 45, corner_radius = 23, 
-                                   bg_color = "#fcd7ab", fg_color = "red", 
-                                    hover_color = "#ff5359", border_width = 0, 
-                                     command = lambda : self.change( expTrac_page, self.firstPage ))
-        log_bt_win = expTrac_page.create_window( 30, 20, anchor = "nw", window = log_bt )
+        back = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
+        back_bt = ctk.CTkButton( master = expTrac_page, 
+                                  image = back, text = None, 
+                                   width = 45, height = 45, corner_radius = 23, 
+                                    bg_color = "#fcd7ab", fg_color = "red", 
+                                     hover_color = "#ff5359", border_width = 0, 
+                                      command = lambda : self.change( expTrac_page, self.firstPage ))
+        back_bt_win = expTrac_page.create_window( 30, 20, anchor = "nw", window = back_bt )
 
         self.root.mainloop()
 
