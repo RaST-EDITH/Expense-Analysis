@@ -350,45 +350,63 @@ class ExpenseTracker :
                                   borderwidth = 0 )
         expTrac_page.pack( fill = "both", expand = True )
 
+        # Background Image
+        back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
+        expTrac_page.create_image( 0, 0, image = back_image , anchor = "nw")
+
         # Heading
-        expTrac_page.create_text( 700, 120, text = "Expense Tracker", 
-                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+        expTrac_page.create_text( 530, 130, text = "Expense Tracker", 
+                                font = ( "Georgia", 42, "bold" ), fill = "#ec1c24" )
 
         # Expense Entry Box
         expense = ctk.CTkEntry( master = expTrac_page, 
-                                 placeholder_text = "Enter Expense", text_font = ( "Seoge UI", 20 ), 
-                                  width = 550, height = 30, corner_radius = 14,
+                                 placeholder_text = "Enter Expense with Specification", text_font = ( "Georgia", 20 ), 
+                                  width = 600, height = 30, corner_radius = 14,
                                    placeholder_text_color = "#666666", text_color = "#191919", 
-                                    fg_color = "#e1f5ff", bg_color = "black", 
-                                     border_color = "white", border_width = 3)
-        expense_win = expTrac_page.create_window( 325, 320-120, anchor = "nw", window = expense )
+                                    fg_color = "#e1f5ff", bg_color = "#fcd7ab", 
+                                      border_color = "white", border_width = 3)
+        expense_win = expTrac_page.create_window( 190, 200, anchor = "nw", window = expense )
 
         # Status box added
         status_box = ctk.CTkTextbox( expTrac_page, 
-                                        width = 880, height = 400, 
-                                            text_font = ( "Seoge UI", 20 ), 
-                                                state = "disabled"  )
-        status_box.place( x = 150, y = 220, anchor = "nw")
+                                        width = 950, height = 400, 
+                                         bg_color = "#fcd7ab", fg_color = "#fecc8f",
+                                          border_width = 5, border_color = "white",
+                                            text_font = ( "Georgia", 20 ), text_color = "#654033",
+                                             corner_radius = 15, state = "disabled"  )
+        status_box.place( x = 115, y = 220, anchor = "nw")
 
         expense.bind('<Return>', lambda event = None : self.updateExp( expense.get(), status_box ) )
         
         # Insert Button
         insert_bt = ctk.CTkButton( master = expTrac_page, 
-                                    text = "Insert", text_font = ( "Tahoma", 20 ), 
+                                    text = "Insert", text_font = ( "Georgia", 20 ), 
                                      width = 100, height = 40, corner_radius = 18,
-                                      bg_color = "black", fg_color = "red", 
-                                       hover_color = "#ff5359", border_width = 0, 
-                                        command = lambda : self.updateExp( expense.get(), status_box ) )
-        insert_bt_win = expTrac_page.create_window( 1030, 320-120, anchor = "nw", window = insert_bt )
+                                      bg_color = "#fcd7ab", fg_color = "red", 
+                                       hover_color = "#ff5359", border_width = 0,
+                                        text_color = "white", 
+                                         command = lambda : self.updateExp( expense.get(), status_box ) )
+        insert_bt_win = expTrac_page.create_window( 960, 200-1, anchor = "nw", window = insert_bt )
 
         # Analysis Button
         analysis_bt = ctk.CTkButton( master = expTrac_page, 
-                                      text = "Expense Analysis", text_font = ( "Tahoma", 20 ), 
+                                      text = "Expense Analysis", text_font = ( "Georgia", 20 ), 
                                        width = 100, height = 40, corner_radius = 18,
-                                        bg_color = "black", fg_color = "red", 
+                                        bg_color = "#fcd7ab", fg_color = "red", 
                                          hover_color = "#ff5359", border_width = 0, 
-                                          command = lambda : self.change( expTrac_page, self.expenseAnalysisPage ) )
-        analysis_bt_win = expTrac_page.create_window( 610, 790, anchor = "nw", window = analysis_bt )
+                                          text_color = "white",
+                                           command = lambda : self.change( expTrac_page, self.expenseAnalysisPage ) )
+        analysis_bt_win = expTrac_page.create_window( 930, 790, anchor = "nw", window = analysis_bt )
+
+        # Return Button
+        log = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
+        log_bt = ctk.CTkButton( master = expTrac_page, 
+                                 image = log, text = None, 
+                                  width = 45, height = 45, corner_radius = 23, 
+                                   bg_color = "#fcd7ab", fg_color = "red", 
+                                    hover_color = "#ff5359", border_width = 0, 
+                                     command = lambda : self.change( expTrac_page, self.firstPage ))
+        log_bt_win = expTrac_page.create_window( 30, 20, anchor = "nw", window = log_bt )
 
         self.root.mainloop()
 
@@ -408,17 +426,17 @@ class ExpenseTracker :
         first_page.create_image( 500,360, image = front_image , anchor = "nw")
 
         # Heading
-        first_page.create_text( 400, 120-1, text = "Expense Tracker", 
+        first_page.create_text( 400, 119, text = "Expense Tracker", 
                                 font = ( "Georgia", 42, "bold" ), fill = "#ec1c24" )
         first_page.create_text( 280, 500, text = "A personalized\nexpense monitoring\napplication\nwith features like\nexpense analysis and\nvisualization using\nbar graphs\nand pie charts.", 
-                                font = ( "Georgia", 20 ), fill = "white" )
+                                font = ( "Georgia", 20), fill = "white" )
 
         # Next Page Button
         next_bt = ctk.CTkButton( master = first_page, 
                                   text = "Let's Go ->", text_font = ( "Tahoma", 20 ), 
                                    width = 100, height = 40, corner_radius = 18,
-                                    bg_color = "#fecc8f", fg_color = "#ff5359", 
-                                     hover_color = "#008175", border_width = 0,
+                                    bg_color = "#fecc8f", fg_color = "#ec1c24", 
+                                     hover_color = "#ff5359", border_width = 0,
                                       text_color = "white",
                                        command = lambda : self.change( first_page, self.expEntryPage ) )
         next_bt_win = first_page.create_window( 320, 720, anchor = "nw", window = next_bt )
