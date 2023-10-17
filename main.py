@@ -25,6 +25,7 @@ class ExpenseTracker :
         self.root.resizable( False, False )
         self.count = [1,2]
         self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet.xlsx")
+        self.second_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
         self.third_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\ThirdPage.jpg" ), 1498, 875)
         self.pie1_img = self.Imgo( os.path.join( os.getcwd(), "try1.jpg" ), 150, 150 )
         self.pie2_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
@@ -369,8 +370,7 @@ class ExpenseTracker :
         expTrac_page.pack( fill = "both", expand = True )
 
         # Background Image
-        back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
-        expTrac_page.create_image( 0, 0, image = back_image , anchor = "nw")
+        expTrac_page.create_image( 0, 0, image = self.second_back_image , anchor = "nw")
 
         # Heading
         expTrac_page.create_text( 530, 130, text = "Expense Tracker", 
@@ -417,9 +417,8 @@ class ExpenseTracker :
         analysis_bt_win = expTrac_page.create_window( 930, 790, anchor = "nw", window = analysis_bt )
 
         # Return Button
-        back = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
         back_bt = ctk.CTkButton( master = expTrac_page, 
-                                  image = back, text = None, 
+                                  image = self.back, text = None, 
                                    width = 45, height = 45, corner_radius = 23, 
                                     bg_color = "#fcd7ab", fg_color = "red", 
                                      hover_color = "#ff5359", border_width = 0, 
