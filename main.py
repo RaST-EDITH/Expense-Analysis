@@ -79,7 +79,7 @@ class ExpenseTracker :
         
         else :
             x_place = np.arange( 1, 5)
-            plt.bar( x_place, exp_bar["Total"], width = w, color = colors[6] )
+            plt.bar( x_place, exp_bar["Total"], width = w, color = "#ee5160" )
             plt.xticks( x_place, req_months )
         
         plt.xlabel("Months")
@@ -291,54 +291,71 @@ class ExpenseTracker :
                                    borderwidth = 0 )
         expAnaly_page.pack( fill = "both", expand = True )
 
+        # Background Image
+        back_image = self.Imgo( os.path.join( os.getcwd(), "Background\ThirdPage.jpg" ), 1498, 875)
+        expAnaly_page.create_image( 0, 0, image = back_image , anchor = "nw")
+
         # Heading
-        expAnaly_page.create_text( 700, 120, text = "Expense Analysis", 
-                                font = ( "Book Antiqua", 45, "bold", "underline" ), fill = "#1c54df" )
+        expAnaly_page.create_text( 530, 132, text = "Expense Analysis", 
+                                font = ( "Georgia", 42, "bold" ), fill = "#ec1c24" )
 
         # Pie 1 Button
+        pie1_img = self.Imgo( os.path.join( os.getcwd(), "try1.jpg" ), 150, 150 )
         pie1_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Current Month", text_font = ( "Tahoma", 20 ), 
-                                   width = 100, height = 50, corner_radius = 18,
-                                    bg_color = "black", fg_color = "red", 
-                                     hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : self.pieShow( data_1 ) )
-        pie1_bt_win = expAnaly_page.create_window( 100, 200, anchor = "nw", window = pie1_bt )
+                                  text = "Current Month", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 200, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                     hover_color = "#f68207", text_color = "white",
+                                      border_width = 5, border_color = "white",
+                                       image = pie1_img, compound = "top", 
+                                        command = lambda : self.pieShow( data_1 ) )
+        pie1_bt_win = expAnaly_page.create_window( 150, 220, anchor = "nw", window = pie1_bt )
 
         # Pie 2 Button
+        pie2_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
         pie2_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Previous Month", text_font = ( "Tahoma", 20 ), 
-                                   width = 100, height = 50, corner_radius = 18,
-                                    bg_color = "black", fg_color = "red", 
-                                     hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : self.pieShow( data_2 ) )
-        pie2_bt_win = expAnaly_page.create_window( 400, 200, anchor = "nw", window = pie2_bt )
+                                  text = "Previous Month", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 200, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                     hover_color = "#f68207", text_color = "white",
+                                      border_width = 5, border_color = "white",
+                                       image = pie2_img, compound = "top",  
+                                        command = lambda : self.pieShow( data_2 ) )
+        pie2_bt_win = expAnaly_page.create_window( 500, 220, anchor = "nw", window = pie2_bt )
 
         # Bar 1 Button
+        bar1_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
         Bar1_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Previous Totals", text_font = ( "Tahoma", 20 ), 
-                                   width = 100, height = 50, corner_radius = 18,
-                                    bg_color = "black", fg_color = "red", 
-                                     hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : self.barShow( bar_data, 2 ) )
-        Bar1_bt_win = expAnaly_page.create_window( 700, 200, anchor = "nw", window = Bar1_bt )
+                                  text = "Past Months\nOverlook", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 200, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#c65d01", 
+                                     hover_color = "#f68207", text_color = "white",
+                                      border_width = 5, border_color = "white", 
+                                       image = bar1_img, compound = "top",
+                                        command = lambda : self.barShow( bar_data, 2 ) )
+        Bar1_bt_win = expAnaly_page.create_window( 350, 510, anchor = "nw", window = Bar1_bt )
 
         # Bar 2 Button
+        bar2_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
         Bar2_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Previous Detailed", text_font = ( "Tahoma", 20 ), 
-                                   width = 100, height = 50, corner_radius = 18,
-                                    bg_color = "black", fg_color = "red", 
-                                     hover_color = "#ff5359", border_width = 0, 
-                                      command = lambda : self.barShow( bar_data, 1) )
-        Bar2_bt_win = expAnaly_page.create_window( 1000, 200, anchor = "nw", window = Bar2_bt )
+                                  text = "Past Months\nDetailed", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 200, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                     hover_color = "#f68207", text_color = "white",
+                                      border_width = 5, border_color = "white", 
+                                       image = bar2_img, compound = "top", 
+                                        command = lambda : self.barShow( bar_data, 1) )
+        Bar2_bt_win = expAnaly_page.create_window( 700, 510, anchor = "nw", window = Bar2_bt )
 
         # Return Button
-        ret_bt = ctk.CTkButton( master = expAnaly_page, 
-                                 text = "Back", text_font = ( "Tahoma", 20 ), 
-                                  width = 100, height = 50, corner_radius = 18,
-                                   bg_color = "black", fg_color = "red", 
-                                    hover_color = "#ff5359", border_width = 0, 
-                                     command = lambda : self.change( expAnaly_page, self.expEntryPage) )
-        ret_bt_win = expAnaly_page.create_window( 30, 20, anchor = "nw", window = ret_bt )
+        back = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
+        back_bt = ctk.CTkButton( master = expAnaly_page, 
+                                  image = back, text = None, 
+                                   width = 45, height = 45, corner_radius = 23, 
+                                    bg_color = "#fcd7ab", fg_color = "red", 
+                                     hover_color = "#ff5359", border_width = 0, 
+                                      command = lambda : self.change( expAnaly_page, self.expEntryPage ))
+        back_bt_win = expAnaly_page.create_window( 30, 20, anchor = "nw", window = back_bt )
 
         self.root.mainloop()
 
