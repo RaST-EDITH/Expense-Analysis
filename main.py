@@ -25,6 +25,8 @@ class ExpenseTracker :
         self.root.resizable( False, False )
         self.count = [1,2]
         self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet.xlsx")
+        self.first_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstpage.jpg" ), 1498, 875)
+        self.first_front_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstdesign.jpg" ), 300, 300)
         self.second_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
         self.third_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\ThirdPage.jpg" ), 1498, 875)
         self.pie1_img = self.Imgo( os.path.join( os.getcwd(), "try1.jpg" ), 150, 150 )
@@ -437,10 +439,8 @@ class ExpenseTracker :
         first_page.pack( fill = "both", expand = True )
 
         # Background Image
-        back_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstpage.jpg" ), 1498, 875)
-        first_page.create_image( 0, 0, image = back_image , anchor = "nw")
-        front_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstdesign.jpg" ), 300, 300)
-        first_page.create_image( 500,360, image = front_image , anchor = "nw")
+        first_page.create_image( 0, 0, image = self.first_back_image , anchor = "nw")
+        first_page.create_image( 500,360, image = self.first_front_image , anchor = "nw")
 
         # Heading
         first_page.create_text( 400, 119, text = "Expense Tracker", 
