@@ -1,12 +1,12 @@
 
-# Expense Analysis
+# 💰 Expense Analysis 💰
 
-## Overview
+## 📌 Overview
 
 The Expense Analysis project is a Python-based application that utilizes a graphical user interface (GUI) to help users efficiently track and analyze their day-to-day expenses. This project is designed to simplify the process of recording expenses, providing valuable insights into financial habits. It offers several data visualization features, including monthly analysis, per-month total expense comparison, previous month expense monitoring, and previous month's item-based comparison.
 
 
-## Features
+## ⚙ Features
 
 - **Monthly Analysis**: Users can view a detailed breakdown of their expenses on a monthly basis. This feature allows them to gain insights into how much they spend each month and identify spending patterns.
 
@@ -19,7 +19,7 @@ The Expense Analysis project is a Python-based application that utilizes a graph
 - **Detailed Analysis**: In addition to the above features, users can generate a comprehensive analysis, including graphs and charts, to visualize their financial data effectively.
 
 
-## Installation
+## 💻 Installation
 
 1) **Python**: Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 
@@ -29,7 +29,7 @@ The Expense Analysis project is a Python-based application that utilizes a graph
   pip install -r requirements.txt
 ```
     
-## Run Locally
+## 🕹 Run Locally
 
 1) Clone the project
 
@@ -69,8 +69,7 @@ The Expense Analysis project is a Python-based application that utilizes a graph
   pip install -r requirements.txt
 ```
 
-6) Now, you have all the necessary packages installed in your virtual environment. You can start using the project.
-
+6) Now, you have all the necessary packages installed in your virtual environment. You can start using the project. 
 To deactivate the virtual environment when you're done, simply run:
 
 ```bash
@@ -78,6 +77,6 @@ To deactivate the virtual environment when you're done, simply run:
 ```
 
 
-## Links
+## 📎 Links
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/raghvendra-singh-053977226)
