@@ -8,13 +8,13 @@ The Expense Analysis project is a Python-based application that utilizes a graph
 
 ## ⚙ Features
 
-- **Monthly Analysis**: Users can view a detailed breakdown of their expenses on a monthly basis. This feature allows them to gain insights into how much they spend each month and identify spending patterns.
+- **Monthly Analysis**: This feature provides a detailed breakdown of total expenses for each month, categorized by different spending categories. It allows users to gain insights into their monthly spending patterns.
 
-- **Per Month Total Expense Comparison**: The project offers a comparative view of total expenses for different months. Users can compare their expenses across multiple months to track their financial progress.
+- **Per Month Total Expense Comparison**: Users can compare their total expenses between the current month and previous months. This feature enables them to track their financial progress and identify trends over time.
 
-- **Previous Month Expense Monitoring**: This feature provides a quick overview of expenses in the previous month. It helps users stay updated on their recent spending habits.
+- **Previous Month Expense Monitoring**: A comprehensive analysis of expenses for the previous month is available. Users can delve into the specifics of their spending habits in the prior month, helping them make informed financial decisions.
 
-- **Previous Months All Item-Based Comparison**: Users can delve into a more detailed analysis by comparing expenses for specific items across different months. This allows for a thorough examination of spending on individual categories or items.
+- **Previous Months All Item-Based Comparison**: This feature offers a thorough comparison of expenses across different months, categorizing expenses by specific items or spending categories. It allows for a detailed and granular analysis of financial data.
 
 - **Detailed Analysis**: In addition to the above features, users can generate a comprehensive analysis, including graphs and charts, to visualize their financial data effectively.
 
@@ -34,7 +34,7 @@ The Expense Analysis project is a Python-based application that utilizes a graph
 1) Clone the project
 
 ```bash
-  git clone https://github.com/RaST-EDITH/Expense-Analysis
+  git clone https://github.com/RaST-EDITH/Expense-Analysis.git
 ```
 
 2) Go to the project directory
@@ -75,7 +75,9 @@ To deactivate the virtual environment when you're done, simply run:
 ```bash
   deactivate
 ```
+## 📊 Usage
 
+The Expense Analysis project is designed to make managing your expenses and gaining valuable insights into your financial habits a straightforward and user-friendly process. This project is designed to simplify the process of managing and analyzing your expenses. It empowers you to make informed decisions, save money, and achieve your financial goals.
 
 ## 📎 Links
 
