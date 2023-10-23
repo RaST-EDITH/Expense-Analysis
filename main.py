@@ -24,15 +24,15 @@ class ExpenseTracker :
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
         self.count = [1,2]
-        self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet.xlsx")
+        self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet1.xlsx")
         self.first_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstpage.jpg" ), 1498, 875)
         self.first_front_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstdesign.jpg" ), 300, 300)
         self.second_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
         self.third_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\ThirdPage.jpg" ), 1498, 875)
-        self.pie1_img = self.Imgo( os.path.join( os.getcwd(), "try1.jpg" ), 150, 150 )
-        self.pie2_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
-        self.bar1_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
-        self.bar2_img = self.Imgo( os.path.join( os.getcwd(), "month1.jpg" ), 150, 150 )
+        self.pie1_img = self.Imgo( os.path.join( os.getcwd(), r"Background\current.jpg" ), 150, 150 )
+        self.pie2_img = self.Imgo( os.path.join( os.getcwd(), r"Background\pie_chart1.jpg" ), 150, 150 )
+        self.bar1_img = self.Imgo( os.path.join( os.getcwd(), r"Background\month.jpg" ), 150, 150 )
+        self.bar2_img = self.Imgo( os.path.join( os.getcwd(), r"Background\bar_graph.jpg" ), 150, 150 )
         self.back = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
 
     def change( self, can, page) :
@@ -310,8 +310,8 @@ class ExpenseTracker :
         # Pie 1 Button
         pie1_bt = ctk.CTkButton( master = expAnaly_page, 
                                   text = "Current Month", text_font = ( "Georgia", 20 ), 
-                                   width = 200, height = 200, corner_radius = 18,
-                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                   width = 200, height = 210, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f40030", 
                                      hover_color = "#f68207", text_color = "white",
                                       border_width = 5, border_color = "white",
                                        image = self.pie1_img, compound = "top", 
@@ -321,8 +321,8 @@ class ExpenseTracker :
         # Pie 2 Button
         pie2_bt = ctk.CTkButton( master = expAnaly_page, 
                                   text = "Previous Month", text_font = ( "Georgia", 20 ), 
-                                   width = 200, height = 200, corner_radius = 18,
-                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                   width = 200, height = 210, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f40030", 
                                      hover_color = "#f68207", text_color = "white",
                                       border_width = 5, border_color = "white",
                                        image = self.pie2_img, compound = "top",  
@@ -331,9 +331,9 @@ class ExpenseTracker :
 
         # Bar 1 Button
         Bar1_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Past Months\nOverlook", text_font = ( "Georgia", 20 ), 
-                                   width = 200, height = 200, corner_radius = 18,
-                                    bg_color = "#fcd7ab", fg_color = "#c65d01", 
+                                  text = "   Past Months   \nOverlook", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 220, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f40030", 
                                      hover_color = "#f68207", text_color = "white",
                                       border_width = 5, border_color = "white", 
                                        image = self.bar1_img, compound = "top",
@@ -342,9 +342,9 @@ class ExpenseTracker :
 
         # Bar 2 Button
         Bar2_bt = ctk.CTkButton( master = expAnaly_page, 
-                                  text = "Past Months\nDetailed", text_font = ( "Georgia", 20 ), 
-                                   width = 200, height = 200, corner_radius = 18,
-                                    bg_color = "#fcd7ab", fg_color = "#f68207", 
+                                  text = "   Past Months   \nDetailed", text_font = ( "Georgia", 20 ), 
+                                   width = 200, height = 220, corner_radius = 18,
+                                    bg_color = "#fcd7ab", fg_color = "#f40030", 
                                      hover_color = "#f68207", text_color = "white",
                                       border_width = 5, border_color = "white", 
                                        image = self.bar2_img, compound = "top", 
