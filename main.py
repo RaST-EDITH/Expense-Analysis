@@ -24,13 +24,13 @@ class ExpenseTracker :
         self.root.geometry( "1200x700+200+80" )
         self.root.resizable( False, False )
         self.count = [1,2]
-        self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet1.xlsx")
+        self.path = os.path.join( os.getcwd(), "Sheet\ExpenseSheet.xlsx")
         self.first_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstpage.jpg" ), 1498, 875)
         self.first_front_image = self.Imgo( os.path.join( os.getcwd(), "Background\Firstdesign.jpg" ), 300, 300)
         self.second_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\SecondPage.jpg" ), 1498, 875)
         self.third_back_image = self.Imgo( os.path.join( os.getcwd(), "Background\ThirdPage.jpg" ), 1498, 875)
         self.pie1_img = self.Imgo( os.path.join( os.getcwd(), r"Background\current.jpg" ), 150, 150 )
-        self.pie2_img = self.Imgo( os.path.join( os.getcwd(), r"Background\pie_chart1.jpg" ), 150, 150 )
+        self.pie2_img = self.Imgo( os.path.join( os.getcwd(), r"Background\pie_chart.jpg" ), 150, 150 )
         self.bar1_img = self.Imgo( os.path.join( os.getcwd(), r"Background\month.jpg" ), 150, 150 )
         self.bar2_img = self.Imgo( os.path.join( os.getcwd(), r"Background\bar_graph.jpg" ), 150, 150 )
         self.back = self.Imgo( os.path.join( os.getcwd(), "Background\logout.png" ), 35, 35 )
@@ -65,36 +65,50 @@ class ExpenseTracker :
 
     def barShow( self, data, flag ) :
 
-        w = 0.5
-        c = 0
-        exp_bar, req_months = data
-        colors = [
-            '#FF6B6B', '#6B4226', '#6AB04A', '#F9A03F', '#F7DB4F',
-            '#F7665A', '#48A9A6', '#F4A261', '#FFD700', '#F4A261',
-            '#58B19F', '#F19066', '#9A8C98', '#4B778D', '#45ADA8',
-            '#A85183', '#FFD700', '#CC8E35', '#FFCB77', '#68B0AB',
-            '#CB769E', '#FF6B6B', '#577590', '#40C9A2', '#8A5E9F'
-        ]
-        if flag == 1 :
-            x_place = np.arange( 1, 4*5, 5)
-            label = []
-            for i in exp_bar.keys() :
-                if i !="Total" :
-                    plt.bar( x_place + c*w, exp_bar[i], width = w, color = colors[(c*3)%25] )
-                    c = c+1
-                    label.append(i)
-            plt.xticks( x_place + (c-1)*w/2, req_months )
-            plt.legend( labels = label )
+        try :
+
+            w = 0.5
+            c = 0
+            exp_bar, req_months = data
+            colors = [
+                '#FF6B6B', '#6B4226', '#6AB04A', '#F9A03F', '#F7DB4F',
+                '#F7665A', '#48A9A6', '#F4A261', '#FFD700', '#F4A261',
+                '#58B19F', '#F19066', '#9A8C98', '#4B778D', '#45ADA8',
+                '#A85183', '#FFD700', '#CC8E35', '#FFCB77', '#68B0AB',
+                '#CB769E', '#FF6B6B', '#577590', '#40C9A2', '#8A5E9F'
+            ]
+            if flag == 1 :
+                x_place = np.arange( 1, 4*5, 5)
+                label = []
+                for i in exp_bar.keys() :
+                    if i !="Total" :
+                        plt.bar( x_place + c*w, exp_bar[i], width = w, color = colors[(c*3)%25] )
+                        c = c+1
+                        label.append(i)
+                plt.xticks( x_place + (c-1)*w/2, req_months )
+                plt.legend( labels = label )
+            
+            else :
+                x_place = np.arange( 1, 5)
+                plt.bar( x_place, exp_bar["Total"], width = w, color = "#ee5160" )
+                plt.xticks( x_place, req_months )
+            
+            plt.xlabel("Months")
+            plt.ylabel("Expense Amount")
+            plt.title("Previous Months Expense Chart")
+            plt.show()
         
+        except :
+            showerror( title = "Empty File", message = "File is empty" )
+
+    def check( self, page ) :
+        sheet = pd.read_excel( pd.ExcelFile( self.path ), 'Expense_Sheet')
+        column = sheet.columns
+        months = sheet[column[4]].unique()
+        if len(months) == 0 :
+            showerror( title = "Empty File", message = "File is empty" )
         else :
-            x_place = np.arange( 1, 5)
-            plt.bar( x_place, exp_bar["Total"], width = w, color = "#ee5160" )
-            plt.xticks( x_place, req_months )
-        
-        plt.xlabel("Months")
-        plt.ylabel("Expense Amount")
-        plt.title("Previous Months Expense Chart")
-        plt.show()
+            self.change( page, self.expenseAnalysisPage )
 
     def expenseAnalysis( self ) :
 
@@ -415,7 +429,7 @@ class ExpenseTracker :
                                         bg_color = "#fcd7ab", fg_color = "red", 
                                          hover_color = "#ff5359", border_width = 0, 
                                           text_color = "white",
-                                           command = lambda : self.change( expTrac_page, self.expenseAnalysisPage ) )
+                                           command = lambda : self.check( expTrac_page ) )
         analysis_bt_win = expTrac_page.create_window( 930, 790, anchor = "nw", window = analysis_bt )
 
         # Return Button
